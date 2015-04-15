@@ -1,0 +1,2 @@
+# AngularJsTutorialMemos
+AngularJsTutorialやりながらのメモ書き
