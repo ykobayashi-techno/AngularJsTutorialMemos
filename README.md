@@ -8,6 +8,11 @@ node.jsのインストール (v0.10.27+)
 npmインストール
 bowerインストール
 
+npm installで入るはずのchromeDriverがYosemite環境で解凍できず、以下からChromeDriver2.15をDLして配置
+https://sites.google.com/a/chromium.org/chromedriver/downloads
+
+動作確認したところ大丈夫
+
 ### サーバースタート ###
 
     npm start
