@@ -46,6 +46,8 @@ controllerの中身、bodyタグに記述するngControllerディレクティブ
 
 コントローラのUnitTest
 書き方はJasmineという方法
+* Jasmine使い方メモ *
+http://qiita.com/opengl-8080/items/cf3acafda9756f4b04c9
 
 phoneCtrlの中身を1件追加してテスト失敗となる
 テストを修正し、lengthの結果を4件としてテスト成功
