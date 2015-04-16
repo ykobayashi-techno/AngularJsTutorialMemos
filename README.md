@@ -56,3 +56,21 @@ http://qiita.com/opengl-8080/items/cf3acafda9756f4b04c9
 
 phoneCtrlの中身を1件追加してテスト失敗となる
 テストを修正し、lengthの結果を4件としてテスト成功
+
+## Tutorial / 3 - Filtering Repeaters ##
+inputタグ、queryを使用して現在の要素にフィルターをかける
+        <div class="col-md-2">
+            <!--Sidebar content-->
+        
+            Search: <input ng-model="query">
+        </div>
+        <div class="col-md-10">
+            <!--Body content-->
+            <ul class="phones">
+                <li ng-repeat="phone in phones | filter:query">
+                    {{phone.name}}
+                    <p>{{phone.snippet}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
