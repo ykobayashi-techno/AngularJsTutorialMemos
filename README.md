@@ -59,6 +59,7 @@ phoneCtrlの中身を1件追加してテスト失敗となる
 
 ## Tutorial / 3 - Filtering Repeaters ##
 inputタグ、queryを使用して現在の要素にフィルターをかける
+
         <div class="col-md-2">
             <!--Sidebar content-->
         
@@ -74,3 +75,30 @@ inputタグ、queryを使用して現在の要素にフィルターをかける
             </ul>
         </div>
     </div>
+    
+E2Eテストの方法
+
+## Tutorial / 4 - Two-way Data Binding ##
+双方向のバインディングについて
+HTML側から変数を参照するのではなく、Controller側からHTMLへ
+Selectタグを使用し、Controller側でデフォルト値をセットする
+
+HTML：
+
+        Search: <input ng-model="query">
+        Sort by:
+        <select ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+        
+        <ul class="phones">
+          <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+            <span>{{phone.name}}</span>
+            <p>{{phone.snippet}}</p>
+          </li>
+        </ul>
+
+JS：
+
+        $scope.orderProp = 'age';
