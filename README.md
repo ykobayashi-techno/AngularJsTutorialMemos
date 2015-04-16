@@ -103,6 +103,11 @@ JS：
 
         $scope.orderProp = 'age';
 
+## Tutorial / 5 - XHRs & Dependency Injection ##
+
+httpサービスを利用して取得したデータの表示
+successに関数を渡して処理する
+
 ### Testについて ###
 通常テスト用に$httpを実装するが、Angularでは*$httpBackend*に擬似的なレスポンスを設定して使用できる
 
@@ -117,3 +122,18 @@ JS：
             scope = $rootScope.$new();
             ctrl = $controller('PhoneListCtrl', {$scope: scope});
         }));
+
+## Tutorial / 6 - Templating Links & Images ##
+
+リンクと画像について
+画像はそのままsrcではなく、ng-src="{{source}}"と書くことで初期化前に存在しない場所へのアクセスを防ぐ
+
+        <ul class="phones">
+          <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="thumbnail">
+            <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
+            <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+            <p>{{phone.snippet}}</p>
+          </li>
+        </ul>
+
+Testでng−srcをsrcに変更し、存在しない場所へアクセスしたことを確認
