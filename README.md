@@ -105,3 +105,15 @@ JS：
 
 ### Testについて ###
 通常テスト用に$httpを実装するが、Angularでは*$httpBackend*に擬似的なレスポンスを設定して使用できる
+
+        var scope, ctrl, $httpBackend;
+        
+        beforeEach(module('phonecatApp'));
+        beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
+            $httpBackend = _$httpBackend_;
+            $httpBackend.expectGET('phones/phones.json').
+            respond([{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
+        
+            scope = $rootScope.$new();
+            ctrl = $controller('PhoneListCtrl', {$scope: scope});
+        }));
