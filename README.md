@@ -102,3 +102,6 @@ HTML：
 JS：
 
         $scope.orderProp = 'age';
+
+### Testについて ###
+通常テスト用に$httpを実装するが、Angularでは*$httpBackend*に擬似的なレスポンスを設定して使用できる
