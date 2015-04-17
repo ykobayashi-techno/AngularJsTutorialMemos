@@ -145,10 +145,10 @@ angular-route.jsを読み込み、ngRouteモジュールと必要なController�
 index.html以外へテンプレートを移動  
 PhoneListCtrlとPhoneDetailCtrlという、一覧と詳細用ビューのコントローラを作成
 
-		var phonecatApp = angular.module('phonecatApp', [
-		  'ngRoute',
-		  'phonecatControllers'
-		]);
+    var phonecatApp = angular.module('phonecatApp', [
+        'ngRoute',
+        'phonecatControllers'
+    ]);
 
 ## 8 - More Templating ##
 
@@ -158,8 +158,8 @@ PhoneListCtrlとPhoneDetailCtrlという、一覧と詳細用ビューのコン�
 
 Nexus-Sの画像の取得を行い画像が四件存在するか確認
 
-		var imageList = element.all(by.repeater('img in phone.images'));
-		expect(imageList.count()).toBe(4);
+    var imageList = element.all(by.repeater('img in phone.images'));
+    expect(imageList.count()).toBe(4);
 
 ## 9 - Filters
 
@@ -167,11 +167,11 @@ Nexus-Sの画像の取得を行い画像が四件存在するか確認
 
 フィルタを作成してDIに加える
 
-		angular.module('phonecatApp', ['ngRoute','phonecatControllers','phonecatFilters']);
-
-		<dl>
-		  <dt>Infrared</dt>
-		  <dd>{{phone.connectivity.infrared | checkmark}}</dd>
-		  <dt>GPS</dt>
-		  <dd>{{phone.connectivity.gps | checkmark}}</dd>
-		</dl>
+    angular.module('phonecatApp', ['ngRoute','phonecatControllers','phonecatFilters']);
+    
+    <dl>
+        <dt>Infrared</dt>
+        <dd>{{phone.connectivity.infrared | checkmark}}</dd>
+        <dt>GPS</dt>
+        <dd>{{phone.connectivity.gps | checkmark}}</dd>
+    </dl>
