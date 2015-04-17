@@ -161,17 +161,45 @@ Nexus-Sの画像の取得を行い画像が四件存在するか確認
     var imageList = element.all(by.repeater('img in phone.images'));
     expect(imageList.count()).toBe(4);
 
-## 9 - Filters
+## 9 - Filters ##
 
 カスタムフィルタ。true falseを✔、×に置き換え
 
 フィルタを作成してDIに加える
 
+controller
+
     angular.module('phonecatApp', ['ngRoute','phonecatControllers','phonecatFilters']);
-    
+
+html
+
     <dl>
         <dt>Infrared</dt>
         <dd>{{phone.connectivity.infrared | checkmark}}</dd>
         <dt>GPS</dt>
         <dd>{{phone.connectivity.gps | checkmark}}</dd>
     </dl>
+
+## 10 - Event Handlers ##
+
+クリックイベントで画像を置き換える処理
+関数をControllerに用意し、HTML側で呼び出す
+
+controller:
+
+    $scope.setImage = function(imageUrl) {
+      $scope.mainImageUrl = imageUrl;
+    };
+    
+html
+
+    <img ng-src="{{mainImageUrl}}" class="phone">
+    ...
+    <ul class="phone-thumbs">
+      <li ng-repeat="img in phone.images">
+        <img ng-src="{{img}}" ng-click="setImage(img)">
+      </li>
+    </ul>
+    
+html側でmainImageUrlをバインドしているので、setImageが呼ばれて変更されると
+表示されている画像も変わる
