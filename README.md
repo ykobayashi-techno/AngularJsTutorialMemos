@@ -1,7 +1,8 @@
-# AngularJsTutorialMemos #
+# AngularJsTutorialMemos
+
 AngularJsTutorialやりながらのメモ書き
 
-## 前準備 ##
+## 前準備
 
 gitからangular phonecatのクローン
 node.jsのインストール (v0.10.27+)
@@ -13,51 +14,52 @@ https://sites.google.com/a/chromium.org/chromedriver/downloads
 
 動作確認したところ大丈夫
 
-### サーバースタート ###
+### サーバースタート
 
     npm start
 
 http://localhost:8000/app/index.html
   
-### ユニットテスト ###
+### ユニットテスト
 
     npm test
 
 Karmaというtest runner
 
-### E2Eテスト ###
+### E2Eテスト
 
     npm run protractor
   
 protractor
 
-## Tutorial / 0 - Bootstrap(始める) ##
+## 0 - Bootstrap(始める)
 
     <html ng-app>
     +
     <script src="bower_components/angular/angular.js">
 
-* {{}} *を使用したバインディングの方法
-* 
+**{{}}**を使用したバインディングの方法
 
-## Tutorial / 1 - Static Template
+## 1 - Static Template
 
 angularJS、バインディングの仕組みを使用しない通常のHTMLの書き方
 
-## Tutorial / 2 - Angular Templates
+## 2 - Angular Templates
 
 angularJS、バインディングの仕組みを利用した動的なページ
 controllerの中身、bodyタグに記述するngControllerディレクティブ要素
 
 コントローラのUnitTest
 書き方はJasmineという方法
-* Jasmine使い方メモ *
+
+*Jasmine使い方メモ*  
 http://qiita.com/opengl-8080/items/cf3acafda9756f4b04c9
 
 phoneCtrlの中身を1件追加してテスト失敗となる
 テストを修正し、lengthの結果を4件としてテスト成功
 
-## Tutorial / 3 - Filtering Repeaters ##
+## 3 - Filtering Repeaters
+
 inputタグ、queryを使用して現在の要素にフィルターをかける
 
         <div class="col-md-2">
@@ -78,7 +80,8 @@ inputタグ、queryを使用して現在の要素にフィルターをかける
     
 E2Eテストの方法
 
-## Tutorial / 4 - Two-way Data Binding ##
+## 4 - Two-way Data Binding
+
 双方向のバインディングについて
 HTML側から変数を参照するのではなく、Controller側からHTMLへ
 Selectタグを使用し、Controller側でデフォルト値をセットする
@@ -103,12 +106,13 @@ JS：
 
         $scope.orderProp = 'age';
 
-## Tutorial / 5 - XHRs & Dependency Injection ##
+## 5 - XHRs & Dependency Injection
 
 httpサービスを利用して取得したデータの表示
 successに関数を渡して処理する
 
-### Testについて ###
+### Testについて
+
 通常テスト用に$httpを実装するが、Angularでは*$httpBackend*に擬似的なレスポンスを設定して使用できる
 
         var scope, ctrl, $httpBackend;
@@ -123,7 +127,7 @@ successに関数を渡して処理する
             ctrl = $controller('PhoneListCtrl', {$scope: scope});
         }));
 
-## Tutorial / 6 - Templating Links & Images ##
+## 6 - Templating Links & Images
 
 リンクと画像について
 画像はそのままsrcではなく、ng-src="{{source}}"と書くことで初期化前に存在しない場所へのアクセスを防ぐ
@@ -137,3 +141,41 @@ successに関数を渡して処理する
         </ul>
 
 Testでng−srcをsrcに変更し、存在しない場所へアクセスしたことを確認
+
+## 7 - Routing & Multiple Views
+
+angular-route.jsを読み込み、ngRouteモジュールと必要なControllerを渡す
+
+index.html以外へテンプレートを移動  
+PhoneListCtrlとPhoneDetailCtrlという、一覧と詳細用ビューのコントローラを作成
+
+		var phonecatApp = angular.module('phonecatApp', [
+		  'ngRoute',
+		  'phonecatControllers'
+		]);
+
+## 8 - More Templating
+
+端末の詳細ビューの作成
+
+### テスト
+
+Nexus-Sの画像の取得を行い画像が四件存在するか確認
+
+		var imageList = element.all(by.repeater('img in phone.images'));
+		expect(imageList.count()).toBe(4);
+
+## 9 - Filters
+
+カスタムフィルタ。true falseを✔、×に置き換え
+
+フィルタを作成してDIに加える
+
+		angular.module('phonecatApp', ['ngRoute','phonecatControllers','phonecatFilters']);
+
+		<dl>
+	      <dt>Infrared</dt>
+	      <dd>{{phone.connectivity.infrared | checkmark}}</dd>
+	      <dt>GPS</dt>
+	      <dd>{{phone.connectivity.gps | checkmark}}</dd>
+	    </dl>
