@@ -74,7 +74,6 @@ inputタグ、queryを使用して現在の要素にフィルターをかける
                 </li>
             </ul>
         </div>
-    </div>
     
 E2Eテストの方法
 
@@ -101,7 +100,9 @@ HTML：
 
 JS：
 
+```javascript
         $scope.orderProp = 'age';
+```
 
 ## Tutorial / 5 - XHRs & Dependency Injection ##
 
