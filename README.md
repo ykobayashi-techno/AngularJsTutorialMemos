@@ -60,21 +60,23 @@ phoneCtrlの中身を1件追加してテスト失敗となる
 ## Tutorial / 3 - Filtering Repeaters ##
 inputタグ、queryを使用して現在の要素にフィルターをかける
 
-        <div class="col-md-2">
-            <!--Sidebar content-->
-        
-            Search: <input ng-model="query">
-        </div>
-        <div class="col-md-10">
-            <!--Body content-->
-            <ul class="phones">
-                <li ng-repeat="phone in phones | filter:query">
-                    {{phone.name}}
-                    <p>{{phone.snippet}}</p>
-                </li>
-            </ul>
-        </div>
+```html
+<div class="col-md-2">
+    <!--Sidebar content-->
     
+    Search: <input ng-model="query">
+</div>
+<div class="col-md-10">
+    <!--Body content-->
+    <ul class="phones">
+        <li ng-repeat="phone in phones | filter:query">
+            {{phone.name}}
+            <p>{{phone.snippet}}</p>
+        </li>
+    </ul>
+</div>
+```
+
 E2Eテストの方法
 
 ## Tutorial / 4 - Two-way Data Binding ##
